@@ -1,0 +1,156 @@
+
+System Collections (Internal PocketBase Use):
+These collections are automatically managed by PocketBase for core authentication and administrative functions. Users generally don't interact with them directly through the application's main features.
+
+_superusers (auth type, System)
+
+Purpose: Stores administrative users with full system access.
+
+Key Fields: Standard auth fields like email, password, tokenKey, created, updated.
+
+Access Rules: Managed internally by PocketBase (typically only accessible via the admin UI).
+
+Auth Settings: Basic password authentication enabled for admin logins.
+
+_authOrigins (base type, System)
+
+Purpose: Tracks login origins/devices for authenticated users (used for features like "login from a new location" alerts).
+
+Key Fields: collectionRef (relation to auth collection), recordRef (relation to specific user record), fingerprint (unique device/browser identifier).
+
+Access Rules: Restricted so users can only list/view/delete their own login origins (@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId).
+
+_externalAuths (base type, System)
+
+Purpose: Stores mappings for users authenticated via OAuth2 providers (e.g., Google, GitHub).
+
+Key Fields: collectionRef, recordRef, provider (e.g., "google"), providerId (the user's ID from the external provider).
+
+Access Rules: Restricted so users can only list/view/delete their own linked external auth records (@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId).
+
+_mfas (base type, System)
+
+Purpose: Stores configuration for Multi-Factor Authentication (MFA) methods enabled by users.
+
+Key Fields: collectionRef, recordRef, method (e.g., "totp").
+
+Access Rules: Restricted so users can only list/view their own MFA records (@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId).
+
+_otps (base type, System)
+
+Purpose: Stores temporary One-Time Passwords (OTPs) sent for actions like password reset or login.
+
+Key Fields: collectionRef, recordRef, password (hashed OTP), sentTo (email/phone used).
+
+Access Rules: Restricted so users can only list/view their own OTP records (@request.auth.id != '' && recordRef = @request.auth.id && collectionRef = @request.auth.collectionId).
+
+Application Data Collections (Custom to your App):
+
+These collections define the main data structure for your application's features.
+
+users (auth type, NOT System)
+
+Purpose: The primary collection for regular application users.
+
+Key Fields:
+
+Standard auth fields: id, email, password, tokenKey, emailVisibility, verified, created, updated.
+
+Custom fields: name (text), avatar (file - images).
+
+Access Rules:
+
+List/View/Update/Delete: Users can only access/modify their own record (id = @request.auth.id).
+
+Create: Anyone can create a new user account (createRule is empty).
+
+Auth Settings: Password authentication is enabled. Email is the identity field. OAuth2 mapping is defined (though OAuth2 enabled is currently false), mapping name and avatarURL. Email templates for verification, password reset, and email change are defined.
+
+Achievements (base type, NOT System)
+
+Purpose: Stores information about user achievements.
+
+Key Fields:
+
+user (relation to users, single select) - Links the achievement to a specific user.
+
+type (text) - The type or category of achievement.
+
+description (text) - A description of the achievement.
+
+created, updated (autodate).
+
+Access Rules: No explicit rules defined in the schema (default PocketBase behavior usually means admin-only access unless default permissions are changed).
+
+DailyGoals (base type, NOT System)
+
+Purpose: Tracks daily typing goals and progress for users.
+
+Key Fields:
+
+user (relation to users, single select) - Links the goal to a user.
+
+date (date) - The date for the goal.
+
+targetMinutes (number) - The target duration for practice.
+
+completedMinutes (number) - The actual duration practiced.
+
+achieved (boolean) - Whether the goal was met for the day.
+
+created, updated (autodate).
+
+Access Rules: No explicit rules defined in the schema (default PocketBase behavior usually means admin-only access).
+
+KeyPerformance (base type, NOT System)
+
+Purpose: Stores key performance indicators (KPIs) likely related to typing skills for users.
+
+Key Fields:
+
+user (relation to users, single select) - Links the performance data to a user.
+
+key (text) - Potentially refers to a specific character, key combination, or typing concept being tracked.
+
+accuracy (number) - Typing accuracy for that key/concept.
+
+speed (number) - Typing speed related to that key/concept.
+
+lastPracticed (date) - The last time this key/concept was practiced.
+
+errorCount (number) - Total errors related to this key/concept.
+
+created, updated (autodate).
+
+Access Rules: No explicit rules defined in the schema (default PocketBase behavior usually means admin-only access).
+
+TypingSessions (base type, NOT System)
+
+Purpose: Records detailed data for individual typing practice sessions.
+
+Key Fields:
+
+user (relation to users, single select) - Links the session to a user.
+
+date (date) - The date of the session.
+
+duration (number) - Length of the session (likely in seconds or minutes).
+
+wpm (number) - Words Per Minute achieved.
+
+accuracy (number) - Overall session accuracy.
+
+score (number) - A calculated score for the session.
+
+keystrokes (number) - Total keystrokes during the session.
+
+errors (number) - Total errors made.
+
+selectedKeys (text) - A string or list indicating which keys/characters were focused on in this session.
+
+created, updated (autodate).
+
+Access Rules: No explicit rules defined in the schema (default PocketBase behavior usually means admin-only access).
+
+In summary, this PocketBase schema sets up a multi-user application where users can sign up (users collection) and likely track their typing performance over time via TypingSessions, monitor progress towards DailyGoals, and earn Achievements. The system collections handle the behind-the-scenes authentication mechanics. Note that the custom data collections (Achievements, DailyGoals, KeyPerformance, TypingSessions) currently have no explicit access rules defined, meaning you would typically need to add rules (like allowing users to manage their own records) in PocketBase's admin UI for normal application functionality.
+

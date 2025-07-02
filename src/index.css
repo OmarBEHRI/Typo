@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+ padding: 0;
+ margin: 0;
+ height: 100%;
+ width: 100%; 
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1e1e1e;
+  color: #aaaaaa;
+}
+
+.current-letter {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.typed-correct {
+  color: #ffffff;
+}
+
+.typed-error {
+  color: #ff5555;
+}
+
+.current-word {
+  color: #ffffff;
+}
