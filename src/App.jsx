@@ -4,11 +4,12 @@ import wordsData from './data/words.json';
 import HomePage from './components/HomePage';
 import SideNavbar from './components/SideNavbar';
 import AuthModal from './components/AuthModal';
-import TopRightAuth from './components/TopRightAuth';
 import PracticePage from './pages/PracticePage';
 import UserPage from './pages/UserPage';
 import LeaderboardPage from './pages/LeaderboardPage';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { getUserTopSpeed, getUserLastSession, saveTypingSession } from './services/typingSessionService';
+// import { updateCompletedMinutes, updateCompletedSeconds } from './services/dailyGoalService';
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 function AppContent() {
   const { isLoggedIn } = useAuth();
@@ -28,13 +29,43 @@ function AppContent() {
   const [accuracy, setAccuracy] = useState(0);
   const [score, setScore] = useState(0);
   const [lastSpeed, setLastSpeed] = useState(0);
-  const [topSpeed, setTopSpeed] = useState(0);
+  const [topSpeed, setTopSpeed] = useState(() => {
+    const savedTopSpeed = localStorage.getItem('topSpeed');
+    return savedTopSpeed ? parseInt(savedTopSpeed, 10) : 0;
+  });
   const [learningRate, setLearningRate] = useState(0);
   const [lessonAccuracy, setLessonAccuracy] = useState({ current: 0, previous: 0 });
-  const [dailyGoal, setDailyGoal] = useState(() => {
-    const savedGoal = localStorage.getItem('dailyGoal');
-    return savedGoal ? JSON.parse(savedGoal) : { current: 0, total: 30 };
-  });
+  const [dailyGoal, setDailyGoal] = useState({ current: 0, total: 30 });
+  
+  // Fetch top speed, last speed, and daily goal when logged in or when navigating to practice page
+  useEffect(() => {
+    if (isLoggedIn && (location.pathname === '/practice')) {
+      const fetchData = async () => {
+        try {
+          // Fetch top speed
+          const topSpeedResult = await getUserTopSpeed();
+          if (topSpeedResult.success) {
+            const updatedTopSpeed = topSpeedResult.data.topSpeed;
+            setTopSpeed(updatedTopSpeed);
+            localStorage.setItem('topSpeed', updatedTopSpeed.toString());
+          }
+          
+          // Fetch last session speed
+          const lastSessionResult = await getUserLastSession();
+          if (lastSessionResult.success) {
+            setLastSpeed(lastSessionResult.data.lastSpeed);
+          }
+          
+          // Daily goal is now managed differently
+          // No longer fetching from PocketBase
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+      
+      fetchData();
+    }
+  }, [isLoggedIn, location.pathname]);
 
   const openLoginModal = () => setShowLoginModal(true);
   const closeLoginModal = () => setShowLoginModal(false);
@@ -82,22 +113,64 @@ function AppContent() {
     return globalIndex + letterIndex;
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = async (e) => {
     if (!startTime) setStartTime(Date.now());
 
-    const key = e.key.toLowerCase();
-    if (['shift', 'control', 'alt'].includes(key)) return;
+    // Store original key with case preserved for comparison
+    const originalKey = e.key;
+    // Convert to lowercase only for special key detection
+    const keyLower = originalKey.toLowerCase();
+    if (['shift', 'control', 'alt'].includes(keyLower)) return;
 
     setKeystrokes(prev => prev + 1);
+
+    // Check if we're in a programming lesson
+    const isProgrammingMode = location.pathname === '/practice' && 
+                             document.querySelector('[id="typing-area"] h2')?.textContent.includes('Practicing:');
+    
+    if (isProgrammingMode) {
+      // Programming mode typing is handled in TypingAreaComponent
+      return;
+    }
 
     const currentWord = words[currentWordIndex];
     // Calculate the global index for the current position
     const currentGlobalIndex = calculateGlobalLetterIndex(currentWordIndex, currentLetterIndex);
 
-    if (key === ' ') {
+    if (originalKey === ' ') {
       if (currentLetterIndex === currentWord.length) {
         if (currentWordIndex === words.length - 1) {
-          setEndTime(Date.now());
+          const endTimeNow = Date.now();
+          setEndTime(endTimeNow);
+          
+          // Calculate final speed and update last speed
+          const elapsedMinutes = (endTimeNow - startTime) / 60000;
+          if (elapsedMinutes > 0) {
+            const finalWpm = Math.round((keystrokes / 5) / elapsedMinutes);
+            setLastSpeed(finalWpm);
+            
+            // Update top speed if current speed is higher
+            if (finalWpm > topSpeed) {
+              setTopSpeed(finalWpm);
+              localStorage.setItem('topSpeed', finalWpm.toString());
+            }
+            
+            // Save typing session to database
+            const sessionData = {
+              duration: Math.round(elapsedMinutes * 60),
+              wpm: finalWpm,
+              accuracy: accuracy,
+              score: score,
+              keystrokes: keystrokes,
+              errors: errors,
+              selectedKeys: selectedKeys.join(', ')
+            };
+            
+            // Import is at the top of the file, so we can use it directly
+            await saveTypingSession(sessionData);
+            
+            // Daily goal updates are now handled differently
+          }
           // Reset session
           setCurrentWordIndex(0);
           setCurrentLetterIndex(0);
@@ -109,6 +182,22 @@ function AppContent() {
           setSpeed(0);
           setAccuracy(0);
           setScore(0);
+          
+          // Fetch updated top speed after session completion
+          const fetchUpdatedTopSpeed = async () => {
+            try {
+              const topSpeedResult = await getUserTopSpeed();
+              if (topSpeedResult.success) {
+                const updatedTopSpeed = topSpeedResult.data.topSpeed;
+                setTopSpeed(updatedTopSpeed);
+                localStorage.setItem('topSpeed', updatedTopSpeed.toString());
+              }
+            } catch (error) {
+              console.error('Error fetching updated top speed:', error);
+            }
+          };
+          
+          fetchUpdatedTopSpeed();
           // Generate new words
           const newWords = wordsData.words.filter(word =>
             word.split('').every(letter => selectedKeys.includes(letter))
@@ -123,7 +212,7 @@ function AppContent() {
           setCurrentLetterIndex(0);
         }
       }
-    } else if (key === 'backspace') {
+    } else if (keyLower === 'backspace') {
       if (currentLetterIndex > 0) {
         setCurrentLetterIndex(prev => prev - 1);
         // Remove the last typed letter
@@ -158,9 +247,9 @@ function AppContent() {
         setCurrentWordIndex(prevWordIndex);
         setCurrentLetterIndex(prevWordLength);
       }
-    } else if (ALPHABET.includes(key)) {
+    } else {
       const expectedLetter = currentWord[currentLetterIndex];
-      const correct = key === expectedLetter;
+      const correct = originalKey === expectedLetter;
       
       // Check if there's already an incorrect attempt at this position
       const existingTypedLetter = typedLetters[currentGlobalIndex];
@@ -194,12 +283,12 @@ function AppContent() {
           // If there's already an incorrect attempt, add to previousAttempts array
           if (existingTypedLetter && !existingTypedLetter.correct) {
             newTypedLetters[currentGlobalIndex] = {
-              char: key,
+              char: originalKey,
               correct: false,
               previousAttempts: [...(existingTypedLetter.previousAttempts || []), existingTypedLetter.char]
             };
           } else {
-            newTypedLetters[currentGlobalIndex] = { char: key, correct: false };
+            newTypedLetters[currentGlobalIndex] = { char: originalKey, correct: false };
           }
           return newTypedLetters;
         });
@@ -226,9 +315,7 @@ function AppContent() {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('dailyGoal', JSON.stringify(dailyGoal));
-  }, [dailyGoal]);
+  // No need to save dailyGoal to localStorage anymore as it's stored in PocketBase
 
   const practicePageProps = {
     inputRef, handleKeyDown, speed, accuracy, score, learningRate, lastSpeed, topSpeed, lessonAccuracy,
@@ -240,7 +327,6 @@ function AppContent() {
   return (
     <>
       {location.pathname !== '/' && <SideNavbar openLoginModal={openLoginModal} />}
-      <TopRightAuth openLoginModal={openLoginModal} />
       <AuthModal isOpen={showLoginModal} onClose={closeLoginModal} />
       <div className={`${location.pathname !== '/' ? 'pl-0' : ''}`}>
         <Routes>

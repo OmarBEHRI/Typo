@@ -9,7 +9,7 @@ export const updateKeyPerformance = async (keyData) => {
     }
     
     const userId = pb.authStore.record.id;
-    const { key, accuracy, speed, errorCount } = keyData;
+    const { key, accuracy, speed, errorCount, correctCount = 0 } = keyData;
     
     // Check if a record for this key already exists
     const existingRecords = await pb.collection('KeyPerformance').getList(1, 1, {
@@ -22,15 +22,29 @@ export const updateKeyPerformance = async (keyData) => {
       // Update existing record
       const existingRecord = existingRecords.items[0];
       
-      // Calculate new average accuracy and speed
-      const newAccuracy = Math.round((existingRecord.accuracy + accuracy) / 2);
+      // Get existing counts or default to 0 if not present
+      const existingCorrectCount = existingRecord.correctCount || 0;
+      const existingErrorCount = existingRecord.errorCount || 0;
+      
+      // Add new counts to existing counts
+      const totalCorrectCount = existingCorrectCount + correctCount;
+      const totalErrorCount = existingErrorCount + errorCount;
+      
+      // Calculate new accuracy based on total correct and incorrect counts
+      const totalAttempts = totalCorrectCount + totalErrorCount;
+      const newAccuracy = totalAttempts > 0 ? 
+        Math.round((totalCorrectCount / totalAttempts) * 100) : 
+        accuracy;
+      
+      // Calculate new average speed (weighted by attempts)
       const newSpeed = Math.round((existingRecord.speed + speed) / 2);
       
       const updatedData = {
         accuracy: newAccuracy,
         speed: newSpeed,
         lastPracticed: today,
-        errorCount: existingRecord.errorCount + errorCount
+        errorCount: totalErrorCount,
+        correctCount: totalCorrectCount
       };
       
       const record = await pb.collection('KeyPerformance').update(existingRecord.id, updatedData);
@@ -43,7 +57,8 @@ export const updateKeyPerformance = async (keyData) => {
         accuracy,
         speed,
         lastPracticed: today,
-        errorCount
+        errorCount,
+        correctCount
       };
       
       const record = await pb.collection('KeyPerformance').create(data);

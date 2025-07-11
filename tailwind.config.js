@@ -6,19 +6,27 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        'roboto': ['Roboto', 'sans-serif'],
-      },
       colors: {
-        'dark-gray': '#1e1e1e',
-        'light-gray': '#2d2d2d',
-        'highlight': '#3a3a3a',
-        'text-normal': '#aaaaaa',
-        'text-highlight': '#ffffff',
-        'text-error': '#ff5555',
-        'text-success': '#55ff55',
+        'dark-gray': '#1a1a1a',
+        'light-gray': '#2a2a2a',
         'accent': '#2e7d32',
-        'accent-dark': '#4338ca',
+        'text-normal': '#d1d5db',
+        'text-highlight': '#f3f4f6',
+        'text-success': '#4caf50',
+      },
+      fontFamily: {
+        'sans': ['Courier New', 'monospace'],
+        'roboto': ['Courier New', 'monospace'],
+      },
+      keyframes: {
+        sparkle: {
+          '0%': { transform: 'translate(0, 0) scale(0)', opacity: 0 },
+          '50%': { transform: 'translate(20px, -20px) scale(1)', opacity: 0.5 },
+          '100%': { transform: 'translate(40px, -40px) scale(0)', opacity: 0 }
+        }
+      },
+      animation: {
+        'sparkle': 'sparkle 2s ease-in-out infinite'
       }
     },
   },

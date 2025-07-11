@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import pb from '../services/pocketbaseClient';
 import { useAuth } from '../contexts/AuthContext';
+import { IoTrophyOutline } from 'react-icons/io5';
+// Import medal SVGs
+import GoldMedal from '../assets/medals/gold.svg';
+import SilverMedal from '../assets/medals/silver.svg';
+import BronzeMedal from '../assets/medals/bronze.svg';
 
 function LeaderboardComponent() {
   const { currentUser, isLoggedIn } = useAuth();
@@ -107,11 +112,50 @@ function LeaderboardComponent() {
               }
               
               return (
-                <tr key={user.id} className={`${currentUser && currentUser.id === user.id ? 'bg-dark-gray bg-opacity-50' : ''}`}>
-                  <td className="py-2">{index + 1}</td>
-                  <td className="py-2">{user.username}</td>
-                  <td className="py-2">{user[expField]}</td>
-                  <td className="py-2">{user.overallSpeed} wpm</td>
+                <tr key={user.id} className={`${currentUser && currentUser.id === user.id ? 'bg-dark-gray bg-opacity-50' : ''} ${index < 3 ? 'relative transform transition-all duration-300 hover:scale-105' : ''} ${index === 0 ? 'bg-gradient-to-r from-yellow-900/10 to-yellow-600/10' : index === 1 ? 'bg-gradient-to-r from-gray-500/10 to-gray-300/10' : index === 2 ? 'bg-gradient-to-r from-amber-800/10 to-amber-600/10' : ''}`}>
+                  <td className="py-2 relative">
+                    {index === 0 ? (
+                      <div className="flex items-center">
+                        <img src={GoldMedal} alt="Gold Medal" className="w-6 h-6 mr-1 animate-pulse" />
+                        <span className="font-bold text-yellow-500">1</span>
+                      </div>
+                    ) : index === 1 ? (
+                      <div className="flex items-center">
+                        <img src={SilverMedal} alt="Silver Medal" className="w-6 h-6 mr-1" />
+                        <span className="font-bold text-gray-400">2</span>
+                      </div>
+                    ) : index === 2 ? (
+                      <div className="flex items-center">
+                        <img src={BronzeMedal} alt="Bronze Medal" className="w-6 h-6 mr-1" />
+                        <span className="font-bold text-amber-700">3</span>
+                      </div>
+                    ) : (
+                      index + 1
+                    )}
+                  </td>
+                  <td className="py-2">
+                    <span className={`${index === 0 ? 'font-bold text-yellow-500' : index === 1 ? 'font-bold text-gray-400' : index === 2 ? 'font-bold text-amber-700' : ''}`}>
+                      {user.name}
+                      {index === 0 && <IoTrophyOutline className="inline ml-1 text-yellow-500" />}
+                    </span>
+                  </td>
+                  <td className="py-2">
+                    <span className={`${index === 0 ? 'font-bold text-yellow-500' : index === 1 ? 'font-bold text-gray-400' : index === 2 ? 'font-bold text-amber-700' : ''}`}>
+                      {user[expField]}
+                    </span>
+                  </td>
+                  <td className="py-2">
+                    <span className={`${index === 0 ? 'font-bold text-yellow-500' : index === 1 ? 'font-bold text-gray-400' : index === 2 ? 'font-bold text-amber-700' : ''}`}>
+                      {user.overallSpeed} wpm
+                    </span>
+                    {index === 0 && (
+                      <div className="absolute top-0 right-0 left-0 bottom-0 pointer-events-none overflow-hidden">
+                        <div className="animate-sparkle absolute w-1 h-1 bg-yellow-500 rounded-full opacity-0"></div>
+                        <div className="animate-sparkle delay-100 absolute w-1 h-1 bg-yellow-500 rounded-full opacity-0"></div>
+                        <div className="animate-sparkle delay-200 absolute w-1 h-1 bg-yellow-500 rounded-full opacity-0"></div>
+                      </div>
+                    )}
+                  </td>
                 </tr>
               );
             })}

@@ -11,7 +11,7 @@ function KeyboardComponent({ selectedKeys, toggleKey, toggleAllKeys }) {
         <div className="flex space-x-2 ml-2">
           <button 
             onClick={toggleAllKeys}
-            className="w-24 px-2 py-1 rounded cursor-pointer bg-accent text-white"
+            className="w-24 h-8 px-2 py-1 rounded cursor-pointer bg-accent text-white whitespace-nowrap flex items-center justify-center"
           >
             {allKeysSelected ? 'Default' : 'Select All'}
           </button>

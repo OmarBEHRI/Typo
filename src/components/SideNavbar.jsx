@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { BookOpen, User, ChevronRight, GraduationCap, LayoutDashboard, CheckSquare, Edit } from 'lucide-react';
+import { BookOpen, User, ChevronRight, GraduationCap, LayoutDashboard, CheckSquare, Edit, LogOut } from 'lucide-react';
+import { logoutUser } from '../services/authService';
 
 function SideNavbar({ openLoginModal }) {
   const { isLoggedIn } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  
+  const handleLogout = () => {
+    logoutUser();
+    navigate('/');
+  };
 
   useEffect(() => {
     try {
@@ -102,6 +109,21 @@ function SideNavbar({ openLoginModal }) {
                 />
               </>
             )}
+            
+            <div className="w-full my-2 border-t border-highlight/50"></div>
+            <div
+              onClick={handleLogout}
+              className={`flex items-center py-2 px-2 rounded-md transition-all duration-200 text-text-normal hover:text-text-highlight hover:bg-highlight/60 cursor-pointer ${expanded ? "" : "justify-center w-8 h-8"}`}
+            >
+              <div className="flex-shrink-0">
+                <LogOut size={18} />
+              </div>
+              {expanded && (
+                <span className="ml-2 text-sm font-medium whitespace-nowrap">
+                  Log Out
+                </span>
+              )}
+            </div>
           </>
         ) : (
           <div className="flex flex-col items-center py-2">
