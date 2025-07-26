@@ -1,190 +1,10 @@
 {
   "name": "Python",
-  "description": "A high-level, interpreted programming language known for its readability and versatility.",
+  "description": "A high-level, interpreted programming language that is easy to learn and understand, and is used for a wide range of applications such as web development, scientific computing, data analysis, artificial intelligence, and more.",
   "lessons": [
     {
-      "title": "Basic Syntax",
-      "description": "Learn about Python basic syntax and structure",
-      "content": [
-        "# Output to console",
-        "print(\"Hello, World!\")",
-        "",
-        "# Variables",
-        "number = 42",
-        "pi = 3.14159",
-        "is_python_fun = True",
-        "letter = 'A'",
-        "message = \"Welcome to Python programming!\"",
-        "",
-        "print(message)",
-        "print(f\"The value of number is: {number}\")",
-        "",
-        "# Input from console",
-        "user_input = input(\"Please enter a number: \")",
-        "print(f\"You entered: {user_input}\")",
-        "",
-        "# Constants (by convention)",
-        "MAX_VALUE = 1000",
-        "print(f\"The maximum value is: {MAX_VALUE}\")"
-      ]
-    },
-    {
-      "title": "Functions and Modules",
-      "description": "Practice typing Python functions and modules",
-      "content": [
-        "# Function definition",
-        "def add(a, b):",
-        "    return a + b",
-        "",
-        "# Function with default parameters",
-        "def greet(name, message=\"Hello\"):",
-        "    return f\"{message}, {name}!\"",
-        "",
-        "# Function with variable arguments",
-        "def sum_all(*args):",
-        "    return sum(args)",
-        "",
-        "# Lambda function",
-        "multiply = lambda x, y: x * y",
-        "",
-        "# Using functions",
-        "result = add(5, 3)",
-        "print(f\"Sum: {result}\")",
-        "",
-        "message = greet(\"Alice\")",
-        "print(message)",
-        "",
-        "total = sum_all(1, 2, 3, 4, 5)",
-        "print(f\"Total: {total}\")",
-        "",
-        "product = multiply(4, 5)",
-        "print(f\"Product: {product}\")"
-      ]
-    },
-    {
-      "title": "Data Structures - Lists and Tuples",
-      "description": "Practice typing Python lists and tuples, essential for competitive programming",
-      "content": [
-        "# Lists",
-        "numbers = [1, 2, 3, 4, 5]",
-        "fruits = [\"apple\", \"banana\", \"cherry\"]",
-        "",
-        "# Accessing elements",
-        "print(numbers[0])  # First element",
-        "print(fruits[-1])  # Last element",
-        "",
-        "# Slicing",
-        "print(numbers[1:3])  # Elements from index 1 to 2",
-        "",
-        "# List methods",
-        "numbers.append(6)  # Add element",
-        "numbers.insert(0, 0)  # Insert at position",
-        "numbers.remove(3)  # Remove element",
-        "popped = numbers.pop()  # Remove and return last element",
-        "print(f\"Popped: {popped}, List: {numbers}\")",
-        "",
-        "# List comprehension",
-        "squares = [x**2 for x in range(1, 6)]",
-        "print(f\"Squares: {squares}\")",
-        "",
-        "# Tuples (immutable)",
-        "point = (10, 20)",
-        "rgb = (255, 0, 0)",
-        "",
-        "# Tuple unpacking",
-        "x, y = point",
-        "print(f\"X: {x}, Y: {y}\")"
-      ]
-    },
-    {
-      "title": "Control Flow",
-      "description": "Practice typing Python control flow statements",
-      "content": [
-        "# If-else statement",
-        "score = 85",
-        "",
-        "if score >= 90:",
-        "    print(\"Grade: A\")",
-        "elif score >= 80:",
-        "    print(\"Grade: B\")",
-        "elif score >= 70:",
-        "    print(\"Grade: C\")",
-        "elif score >= 60:",
-        "    print(\"Grade: D\")",
-        "else:",
-        "    print(\"Grade: F\")",
-        "",
-        "# Ternary operator",
-        "message = \"Pass\" if score >= 60 else \"Fail\"",
-        "print(message)",
-        "",
-        "# For loop",
-        "print(\"Counting from 1 to 5:\")",
-        "for i in range(1, 6):",
-        "    print(f\"Count: {i}\")",
-        "",
-        "# For loop with enumerate",
-        "fruits = [\"apple\", \"banana\", \"cherry\"]",
-        "for index, fruit in enumerate(fruits):",
-        "    print(f\"Index {index}: {fruit}\")",
-        "",
-        "# While loop",
-        "print(\"Countdown from 5 to 1:\")",
-        "countdown = 5",
-        "while countdown > 0:",
-        "    print(f\"Countdown: {countdown}\")",
-        "    countdown -= 1",
-        "",
-        "# Break and continue",
-        "for i in range(10):",
-        "    if i == 3:",
-        "        continue  # Skip 3",
-        "    if i == 7:",
-        "        break  # Stop at 7",
-        "    print(i)"
-      ]
-    },
-    {
-      "title": "Dictionaries and Sets",
-      "description": "Practice typing Python dictionaries and sets, crucial for efficient lookups in competitive programming",
-      "content": [
-        "# Dictionary",
-        "person = {\"name\": \"John\", \"age\": 30, \"city\": \"New York\"}",
-        "",
-        "# Accessing values",
-        "print(person[\"name\"])",
-        "print(person.get(\"age\"))",
-        "",
-        "# Adding/updating entries",
-        "person[\"email\"] = \"john@example.com\"",
-        "person[\"age\"] = 31",
-        "",
-        "# Dictionary methods",
-        "keys = person.keys()",
-        "values = person.values()",
-        "items = person.items()",
-        "",
-        "# Dictionary comprehension",
-        "squares = {x: x**2 for x in range(1, 6)}",
-        "print(squares)",
-        "",
-        "# Sets",
-        "fruits = {\"apple\", \"banana\", \"cherry\"}",
-        "vegetables = {\"carrot\", \"lettuce\", \"apple\"}",
-        "",
-        "# Set operations",
-        "union = fruits | vegetables  # Union",
-        "intersection = fruits & vegetables  # Intersection",
-        "difference = fruits - vegetables  # Difference",
-        "",
-        "print(f\"Union: {union}\")",
-        "print(f\"Intersection: {intersection}\")",
-        "print(f\"Difference: {difference}\")"
-      ]
-    },
-    {
-      "title": "Object-Oriented Programming",
-      "description": "Learn about Python classes and objects",
+      "title": "Classes and Objects Basics",
+      "description": "Learn the fundamentals of Python classes and objects",
       "content": [
         "# Class definition",
         "class Person:",
@@ -204,7 +24,21 @@
         "print(person2.age)",
         "",
         "# Calling methods",
-        "print(person1.greet())",
+        "print(person1.greet())"
+      ]
+    },
+    {
+      "title": "Class Inheritance",
+      "description": "Learn about inheritance in Python classes",
+      "content": [
+        "# Base class",
+        "class Person:",
+        "    def __init__(self, name, age):",
+        "        self.name = name",
+        "        self.age = age",
+        "",
+        "    def greet(self):",
+        "        return f\"Hello, my name is {self.name}\"",
         "",
         "# Inheritance",
         "class Student(Person):",
@@ -218,8 +52,13 @@
         "# Creating student object",
         "student1 = Student(\"Charlie\", 20, \"S12345\")",
         "print(student1.greet())",
-        "print(student1.study())",
-        "",
+        "print(student1.study())"
+      ]
+    },
+    {
+      "title": "Class Variables",
+      "description": "Learn about class-level variables in Python",
+      "content": [
         "# Class variables",
         "class Counter:",
         "    count = 0  # Class variable",
@@ -234,8 +73,8 @@
       ]
     },
     {
-      "title": "Error Handling",
-      "description": "Practice typing Python exception handling code",
+      "title": "Basic Exception Handling",
+      "description": "Learn basic try-except blocks in Python",
       "content": [
         "# Basic try-except",
         "try:",
@@ -251,8 +90,13 @@
         "except ZeroDivisionError:",
         "    print(\"Cannot divide by zero\")",
         "except IndexError:",
-        "    print(\"Index out of range\")",
-        "",
+        "    print(\"Index out of range\")"
+      ]
+    },
+    {
+      "title": "Advanced Exception Handling",
+      "description": "Learn about else, finally, and custom exceptions",
+      "content": [
         "# Try-except-else-finally",
         "try:",
         "    number = int(\"42\")",
@@ -262,12 +106,6 @@
         "    print(f\"Conversion successful: {number}\")",
         "finally:",
         "    print(\"Execution completed\")",
-        "",
-        "# Raising exceptions",
-        "def validate_age(age):",
-        "    if age < 0:",
-        "        raise ValueError(\"Age cannot be negative\")",
-        "    return age",
         "",
         "# Custom exceptions",
         "class CustomError(Exception):",
@@ -280,8 +118,8 @@
       ]
     },
     {
-      "title": "File Operations",
-      "description": "Learn to read and write files in Python",
+      "title": "Basic File Operations",
+      "description": "Learn to write and read files in Python",
       "content": [
         "# Writing to a file",
         "with open('example.txt', 'w') as file:",
@@ -296,8 +134,13 @@
         "# Reading lines from a file",
         "with open('example.txt', 'r') as file:",
         "    lines = file.readlines()",
-        "print(f\"Lines: {lines}\")",
-        "",
+        "print(f\"Lines: {lines}\")"
+      ]
+    },
+    {
+      "title": "Advanced File Operations",
+      "description": "Learn about file appending and line-by-line reading",
+      "content": [
         "# Appending to a file",
         "with open('example.txt', 'a') as file:",
         "    file.write('\\nAppended text')",
@@ -310,25 +153,12 @@
         "# Checking if file exists",
         "import os",
         "file_exists = os.path.exists('example.txt')",
-        "print(f\"File exists: {file_exists}\")",
-        "",
-        "# Working with CSV files",
-        "import csv",
-        "with open('data.csv', 'w', newline='') as file:",
-        "    writer = csv.writer(file)",
-        "    writer.writerow(['Name', 'Age'])",
-        "    writer.writerow(['Alice', 25])",
-        "",
-        "# Reading CSV files",
-        "with open('data.csv', 'r') as file:",
-        "    reader = csv.reader(file)",
-        "    for row in reader:",
-        "        print(f\"Row: {row}\")"
+        "print(f\"File exists: {file_exists}\")"
       ]
     },
     {
-      "title": "Advanced Data Structures - Heaps",
-      "description": "Practice using heaps/priority queues for efficient sorting and priority operations",
+      "title": "Advanced Data Structures - Heaps, Part 1",
+      "description": "Learn about heapify and heappop",
       "content": [
         "# Importing heapq module",
         "import heapq",
@@ -341,47 +171,38 @@
         "# Push and pop operations",
         "heapq.heappush(numbers, 0)",
         "smallest = heapq.heappop(numbers)",
-        "print(f\"Smallest element: {smallest}\")",
-        "",
+        "print(f\"Smallest element: {smallest}\")"
+      ]
+    },
+    {
+      "title": "Advanced Data Structures - Heaps, Part 2",
+      "description": "Learn about heappushpop and nsmallest",
+      "content": [
         "# Push and pop in one operation",
         "next_smallest = heapq.heappushpop(numbers, 7)",
         "print(f\"Next smallest: {next_smallest}\")",
         "",
         "# Get n smallest elements",
         "smallest_three = heapq.nsmallest(3, numbers)",
-        "print(f\"Three smallest: {smallest_three}\")",
-        "",
+        "print(f\"Three smallest: {smallest_three}\")"
+      ]
+    },
+    {
+      "title": "Advanced Data Structures - Heaps, Part 3",
+      "description": "Learn about max heap creation and use",
+      "content": [
         "# Creating a max heap (using negatives)",
         "max_heap = [-n for n in [3, 1, 4, 1, 5, 9, 2, 6]]",
         "heapq.heapify(max_heap)",
         "",
         "# Get largest element",
         "largest = -heapq.heappop(max_heap)",
-        "print(f\"Largest element: {largest}\")",
-        "",
-        "# Priority Queue implementation",
-        "class PriorityQueue:",
-        "    def __init__(self):",
-        "        self._queue = []",
-        "",
-        "    def push(self, item, priority):",
-        "        heapq.heappush(self._queue, (priority, item))",
-        "",
-        "    def pop(self):",
-        "        return heapq.heappop(self._queue)[1]",
-        "",
-        "# Using Priority Queue",
-        "pq = PriorityQueue()",
-        "pq.push(\"task1\", 3)",
-        "pq.push(\"task2\", 1)",
-        "pq.push(\"task3\", 2)",
-        "",
-        "print(f\"First task: {pq.pop()}\")"
+        "print(f\"Largest element: {largest}\")"
       ]
     },
     {
-      "title": "Advanced Data Structures - Deques",
-      "description": "Learn about double-ended queues for efficient front and rear operations",
+      "title": "Advanced Data Structures - Deques - Creating and Adding Elements",
+      "description": "Learn the basics of creating and adding elements to a deque",
       "content": [
         "# Importing deque",
         "from collections import deque",
@@ -393,85 +214,105 @@
         "# Adding elements",
         "d.append(6)  # Add to right end",
         "d.appendleft(0)  # Add to left end",
-        "print(f\"After adding elements: {d}\")",
-        "",
+        "print(f\"After adding elements: {d}\")"
+      ]
+    },
+    {
+      "title": "Advanced Data Structures - Deques - Removing Elements",
+      "description": "Learn how to remove elements from a deque",
+      "content": [
         "# Removing elements",
         "right = d.pop()  # Remove from right end",
         "left = d.popleft()  # Remove from left end",
         "print(f\"Removed right: {right}, left: {left}\")",
-        "print(f\"After removing: {d}\")",
-        "",
+        "print(f\"After removing: {d}\")"
+      ]
+    },
+    {
+      "title": "Advanced Data Structures - Deques - Rotating",
+      "description": "Learn how to rotate a deque",
+      "content": [
         "# Rotating the deque",
         "d.rotate(1)  # Rotate right by 1",
         "print(f\"After rotating right: {d}\")",
         "d.rotate(-2)  # Rotate left by 2",
-        "print(f\"After rotating left: {d}\")",
-        "",
+        "print(f\"After rotating left: {d}\")"
+      ]
+    },
+    {
+      "title": "Advanced Data Structures - Deques - Extending",
+      "description": "Learn how to extend a deque",
+      "content": [
         "# Other operations",
         "d.extend([7, 8])  # Extend at right",
         "d.extendleft([9, 10])  # Extend at left",
-        "print(f\"After extending: {d}\")",
-        "",
+        "print(f\"After extending: {d}\")"
+      ]
+    },
+    {
+      "title": "Advanced Data Structures - Deques - Clearing",
+      "description": "Learn how to clear a deque",
+      "content": [
         "# Clear the deque",
         "d.clear()",
         "print(f\"After clearing: {d}\")"
       ]
     },
     {
-      "title": "Graph Representations",
-      "description": "Practice implementing adjacency lists and matrices for graph problems",
+      "title": "Graph Representations - Adjacency List",
+      "description": "Learn to create an adjacency list for graph problems",
       "content": [
         "# Adjacency List representation",
-        "graph = {",
-        "    'A': ['B', 'C'],",
-        "    'B': ['A', 'D', 'E'],",
-        "    'C': ['A', 'F'],",
-        "    'D': ['B'],",
-        "    'E': ['B', 'F'],",
-        "    'F': ['C', 'E']",
-        "}",
         "",
         "# Print adjacency list",
         "for vertex in graph:",
-        "    print(f\"Vertex {vertex} connected to: {graph[vertex]}\")",
-        "",
+        "    print(f\"Vertex {vertex} connected to: {graph[vertex]}\")"
+      ]
+    },
+    {
+      "title": "Graph Representations - Adjacency Matrix",
+      "description": "Learn to create an adjacency matrix for graph problems",
+      "content": [
         "# Adjacency Matrix representation",
-        "vertices = ['A', 'B', 'C', 'D']",
-        "matrix = [",
-        "    [0, 1, 1, 0],  # A's connections",
-        "    [1, 0, 0, 1],  # B's connections",
-        "    [1, 0, 0, 1],  # C's connections",
-        "    [0, 1, 1, 0]   # D's connections",
-        "]",
         "",
         "# Print adjacency matrix",
         "print(\"Adjacency Matrix:\")",
         "for row in matrix:",
-        "    print(row)",
-        "",
+        "    print(row)"
+      ]
+    },
+    {
+      "title": "Graph Representations - Checking Connectivity",
+      "description": "Learn to check if vertices are connected in a graph",
+      "content": [
         "# Check if vertices are connected",
         "def is_connected(matrix, v1, v2):",
-        "    return matrix[v1][v2] == 1",
-        "",
+        "    return matrix[v1][v2] == 1"
+      ]
+    },
+    {
+      "title": "Graph Representations - Adding Edges",
+      "description": "Learn to add an edge to an adjacency list",
+      "content": [
         "# Add edge to adjacency list",
         "def add_edge(graph, v1, v2):",
         "    if v2 not in graph[v1]:",
         "    graph[v1].append(v2)",
-        "    graph[v2].append(v1)",
-        "",
-        "# Get neighbors from adjacency list",
-        "def get_neighbors(graph, vertex):",
-        "    return graph[vertex]",
-        "",
-        "# Print neighbors",
-        "vertex = 'A'",
-        "neighbors = get_neighbors(graph, vertex)",
-        "print(f\"Neighbors of {vertex}: {neighbors}\")"
+        "    graph[v2].append(v1)"
       ]
     },
     {
-      "title": "Dynamic Programming Basics",
-      "description": "Learn to implement memoization and tabulation techniques",
+      "title": "Graph Representations - Getting Neighbors",
+      "description": "Learn to get neighbors from an adjacency list",
+      "content": [
+        "# Get neighbors from adjacency list",
+        "def get_neighbors(graph, vertex):",
+        "    return graph[vertex]"
+      ]
+    },
+    {
+      "title": "Dynamic Programming Basics - Memoization",
+      "description": "Learn to implement memoization for simple dynamic programming problems",
       "content": [
         "# Fibonacci with memoization",
         "def fib_memo(n, memo={}):",
@@ -484,8 +325,13 @@
         "",
         "# Using memoized fibonacci",
         "result = fib_memo(10)",
-        "print(f\"10th Fibonacci number: {result}\")",
-        "",
+        "print(f\"10th Fibonacci number: {result}\")"
+      ]
+    },
+    {
+      "title": "Dynamic Programming Basics - Tabulation",
+      "description": "Learn to implement tabulation for simple dynamic programming problems",
+      "content": [
         "# Fibonacci with tabulation",
         "def fib_tab(n):",
         "    if n <= 1:",
@@ -498,8 +344,13 @@
         "",
         "# Using tabulation fibonacci",
         "result = fib_tab(10)",
-        "print(f\"10th Fibonacci number: {result}\")",
-        "",
+        "print(f\"10th Fibonacci number: {result}\")"
+      ]
+    },
+    {
+      "title": "Dynamic Programming Basics - Coin Change",
+      "description": "Learn to implement dynamic programming for the coin change problem",
+      "content": [
         "# Coin change problem",
         "def coin_change(coins, amount):",
         "    dp = [float('inf')] * (amount + 1)",
@@ -514,8 +365,13 @@
         "coins = [1, 2, 5]",
         "amount = 11",
         "result = coin_change(coins, amount)",
-        "print(f\"Minimum coins needed: {result}\")",
-        "",
+        "print(f\"Minimum coins needed: {result}\")"
+      ]
+    },
+    {
+      "title": "Dynamic Programming Basics - Longest Increasing Subsequence",
+      "description": "Learn to implement dynamic programming for the longest increasing subsequence problem",
+      "content": [
         "# Longest Increasing Subsequence",
         "def longest_increasing_subsequence(arr):",
         "    if not arr:",
@@ -534,8 +390,8 @@
       ]
     },
     {
-      "title": "Recursion Techniques",
-      "description": "Practice common recursion patterns used in competitive programming",
+      "title": "Basic Recursion - Factorial",
+      "description": "Practice basic recursion using factorial example",
       "content": [
         "# Basic recursion - factorial",
         "def factorial(n):",
@@ -545,8 +401,13 @@
         "",
         "# Using factorial",
         "result = factorial(5)",
-        "print(f\"Factorial of 5: {result}\")",
-        "",
+        "print(f\"Factorial of 5: {result}\")"
+      ]
+    },
+    {
+      "title": "Recursive Sum",
+      "description": "Practice recursive sum",
+      "content": [
         "# Recursive sum",
         "def recursive_sum(arr):",
         "    if not arr:",
@@ -556,8 +417,13 @@
         "# Using recursive sum",
         "numbers = [1, 2, 3, 4, 5]",
         "total = recursive_sum(numbers)",
-        "print(f\"Sum of numbers: {total}\")",
-        "",
+        "print(f\"Sum of numbers: {total}\")"
+      ]
+    },
+    {
+      "title": "Binary Search Using Recursion",
+      "description": "Practice binary search using recursion",
+      "content": [
         "# Binary search using recursion",
         "def binary_search(arr, target, left, right):",
         "    if left > right:",
@@ -573,8 +439,13 @@
         "# Using binary search",
         "sorted_numbers = [1, 3, 5, 7, 9, 11, 13]",
         "index = binary_search(sorted_numbers, 7, 0, len(sorted_numbers) - 1)",
-        "print(f\"Found 7 at index: {index}\")",
-        "",
+        "print(f\"Found 7 at index: {index}\")"
+      ]
+    },
+    {
+      "title": "Tower of Hanoi",
+      "description": "Practice Tower of Hanoi",
+      "content": [
         "# Tower of Hanoi",
         "def tower_of_hanoi(n, source, auxiliary, target):",
         "    if n == 1:",
@@ -586,8 +457,13 @@
         "",
         "# Using Tower of Hanoi",
         "print(\"Tower of Hanoi solution for 3 disks:\")",
-        "tower_of_hanoi(3, 'A', 'B', 'C')",
-        "",
+        "tower_of_hanoi(3, 'A', 'B', 'C')"
+      ]
+    },
+    {
+      "title": "Recursive Palindrome Check",
+      "description": "Practice recursive palindrome check",
+      "content": [
         "# Recursive palindrome check",
         "def is_palindrome(s):",
         "    if len(s) <= 1:",
@@ -600,85 +476,8 @@
       ]
     },
     {
-      "title": "Sorting and Searching Algorithms",
-      "description": "Implement various sorting and binary search techniques",
-      "content": [
-        "# Bubble Sort",
-        "def bubble_sort(arr):",
-        "    n = len(arr)",
-        "    for i in range(n):",
-        "        for j in range(0, n-i-1):",
-        "            if arr[j] > arr[j+1]:",
-        "                arr[j], arr[j+1] = arr[j+1], arr[j]",
-        "",
-        "# Quick Sort",
-        "def quick_sort(arr):",
-        "    if len(arr) <= 1:",
-        "        return arr",
-        "    pivot = arr[len(arr)//2]",
-        "    left = [x for x in arr if x < pivot]",
-        "    middle = [x for x in arr if x == pivot]",
-        "    right = [x for x in arr if x > pivot]",
-        "    return quick_sort(left) + middle + quick_sort(right)",
-        "",
-        "# Merge Sort",
-        "def merge_sort(arr):",
-        "    if len(arr) <= 1:",
-        "        return arr",
-        "    mid = len(arr)//2",
-        "    left = merge_sort(arr[:mid])",
-        "    right = merge_sort(arr[mid:])",
-        "    return merge(left, right)",
-        "",
-        "def merge(left, right):",
-        "    result = []",
-        "    i = j = 0",
-        "    while i < len(left) and j < len(right):",
-        "        if left[i] <= right[j]:",
-        "            result.append(left[i])",
-        "            i += 1",
-        "        else:",
-        "            result.append(right[j])",
-        "            j += 1",
-        "    result.extend(left[i:])",
-        "    result.extend(right[j:])",
-        "    return result",
-        "",
-        "# Binary Search",
-        "def binary_search(arr, target):",
-        "    left, right = 0, len(arr) - 1",
-        "    while left <= right:",
-        "        mid = (left + right) // 2",
-        "        if arr[mid] == target:",
-        "            return mid",
-        "        elif arr[mid] < target:",
-        "            left = mid + 1",
-        "        else:",
-        "            right = mid - 1",
-        "    return -1",
-        "",
-        "# Using sorting algorithms",
-        "numbers = [64, 34, 25, 12, 22, 11, 90]",
-        "bubble_sorted = numbers.copy()",
-        "bubble_sort(bubble_sorted)",
-        "print(f\"Bubble sorted: {bubble_sorted}\")",
-        "",
-        "quick_sorted = quick_sort(numbers)",
-        "print(f\"Quick sorted: {quick_sorted}\")",
-        "",
-        "merge_sorted = merge_sort(numbers)",
-        "print(f\"Merge sorted: {merge_sorted}\")",
-        "",
-        "# Using binary search",
-        "sorted_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]",
-        "target = 6",
-        "result = binary_search(sorted_array, target)",
-        "print(f\"Found {target} at index: {result}\")"
-      ]
-    },
-    {
-      "title": "String Manipulation",
-      "description": "Practice efficient string operations and algorithms",
+      "title": "String Basics",
+      "description": "Learn string basics and indexing",
       "content": [
         "# String basics",
         "text = \"Hello, World!\"",
@@ -687,46 +486,86 @@
         "# String operations",
         "print(text.upper())",
         "print(text.lower())",
-        "print(text.replace('Hello', 'Hi'))",
-        "",
+        "print(text.replace('Hello', 'Hi'))"
+      ]
+    },
+    {
+      "title": "String Concatenation",
+      "description": "Learn string concatenation",
+      "content": [
         "# String concatenation",
         "greeting = \"Hello\" + \" \" + \"Python\"",
-        "formatted = f\"Welcome to {name}!\"",
-        "",
+        "formatted = f\"Welcome to {name}!\""
+      ]
+    },
+    {
+      "title": "String Slicing",
+      "description": "Learn string slicing",
+      "content": [
         "# String slicing",
         "print(text[0:5])  # First 5 characters",
         "print(text[-6:])  # Last 6 characters",
-        "print(text[::2])  # Every second character",
-        "",
+        "print(text[::2])  # Every second character"
+      ]
+    },
+    {
+      "title": "String Methods",
+      "description": "Learn string methods",
+      "content": [
         "# String methods",
         "words = \"python programming language\"",
         "print(words.title())",
         "print(words.split())",
-        "print(\"-\".join(['a', 'b', 'c']))",
-        "",
+        "print(\"-\".join(['a', 'b', 'c']))"
+      ]
+    },
+    {
+      "title": "String Checking",
+      "description": "Learn string checking",
+      "content": [
         "# String checking",
         "print(text.startswith('Hello'))",
         "print(text.endswith('!'))",
-        "print('World' in text)",
-        "",
+        "print('World' in text)"
+      ]
+    },
+    {
+      "title": "String Stripping",
+      "description": "Learn string stripping",
+      "content": [
         "# String stripping",
         "spaces = \"   text with spaces   \"",
         "print(spaces.strip())",
         "print(spaces.lstrip())",
-        "print(spaces.rstrip())",
-        "",
+        "print(spaces.rstrip())"
+      ]
+    },
+    {
+      "title": "String Finding",
+      "description": "Learn string finding",
+      "content": [
         "# String finding",
         "position = text.find('World')",
         "count = text.count('l')",
         "print(f\"'World' found at: {position}\")",
-        "print(f\"Count of 'l': {count}\")",
-        "",
+        "print(f\"Count of 'l': {count}\")"
+      ]
+    },
+    {
+      "title": "String Alignment",
+      "description": "Learn string alignment",
+      "content": [
         "# String alignment",
         "text = \"Python\"",
         "print(text.center(20, '*'))",
         "print(text.ljust(10, '-'))",
-        "print(text.rjust(10, '-'))",
-        "",
+        "print(text.rjust(10, '-'))"
+      ]
+    },
+    {
+      "title": "String Validation",
+      "description": "Learn string validation",
+      "content": [
         "# String validation",
         "num = \"12345\"",
         "alpha = \"Hello\"",

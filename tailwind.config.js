@@ -23,10 +23,15 @@ export default {
           '0%': { transform: 'translate(0, 0) scale(0)', opacity: 0 },
           '50%': { transform: 'translate(20px, -20px) scale(1)', opacity: 0.5 },
           '100%': { transform: 'translate(40px, -40px) scale(0)', opacity: 0 }
+        },
+        fadeInLeft: {
+          '0%': { opacity: 0, transform: 'translateX(-20px)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' }
         }
       },
       animation: {
-        'sparkle': 'sparkle 2s ease-in-out infinite'
+        'sparkle': 'sparkle 2s ease-in-out infinite',
+        'fadeInLeft': 'fadeInLeft 0.5s ease-out forwards'
       }
     },
   },

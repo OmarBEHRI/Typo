@@ -10,186 +10,195 @@
         "using namespace std;",
         "",
         "int main() {",
-        "    // Output to console",
         "    cout << \"Hello, World!\" << endl;",
-        "    ",
-        "    // Variables",
-        "    int number = 42;",
-        "    double pi = 3.14159;",
-        "    bool isCppFun = true;",
-        "    char grade = 'A';",
-        "    string message = \"Welcome to C++ programming!\";",
-        "    ",
-        "    cout << message << endl;",
-        "    cout << \"The value of number is: \" << number << endl;",
-        "    ",
-        "    // Input from console",
-        "    int userInput;",
-        "    cout << \"Please enter a number: \";",
-        "    cin >> userInput;",
-        "    cout << \"You entered: \" << userInput << endl;",
-        "    ",
         "    return 0;",
         "}"
       ]
     },
     {
-      "title": "Functions and Classes",
-      "description": "Practice typing C++ functions and classes",
+      "title": "Variables",
+      "description": "Practice declaring and initializing variables",
       "content": [
-        "#include <iostream>",
-        "#include <string>",
-        "using namespace std;",
-        "",
-        "// Function declaration",
+        "int number = 42;",
+        "double pi = 3.14159;",
+        "bool isCppFun = true;",
+        "char grade = 'A';",
+        "string message = \"Welcome to C++ programming!\";"
+      ]
+    },
+    {
+      "title": "Functions",
+      "description": "Practice declaring and calling functions",
+      "content": [
         "int add(int a, int b);",
-        "float multiply(float a, float b);",
-        "",
-        "// Class definition",
+        "int sum = add(5, 3);",
+        "cout << \"Sum: \" << sum << endl;"
+      ]
+    },
+    {
+      "title": "Classes",
+      "description": "Learn about C++ classes",
+      "content": [
         "class Person {",
-        "private:",
-        "    string name;",
-        "    int age;",
-        "",
-        "public:",
-        "    // Constructor",
-        "    Person(string personName, int personAge) {",
-        "        name = personName;",
-        "        age = personAge;",
-        "    }",
-        "    ",
-        "    // Methods",
-        "    void introduce() {",
-        "        cout << \"Hello, my name is \" << name << \" and I am \" << age << \" years old.\" << endl;",
-        "    }",
-        "    ",
-        "    // Getters and setters",
-        "    string getName() {",
-        "        return name;",
-        "    }",
-        "    ",
-        "    void setName(string newName) {",
-        "        name = newName;",
-        "    }",
-        "    ",
-        "    int getAge() {",
-        "        return age;",
-        "    }",
-        "    ",
-        "    void setAge(int newAge) {",
-        "        age = newAge;",
-        "    }",
-        "};",
-        "",
-        "int main() {",
-        "    // Function calls",
-        "    int sum = add(5, 3);",
-        "    cout << \"Sum: \" << sum << endl;",
-        "    ",
-        "    float product = multiply(2.5, 3.0);",
-        "    cout << \"Product: \" << product << endl;",
-        "    ",
-        "    // Object creation and method calls",
-        "    Person person1(\"John\", 30);",
-        "    person1.introduce();",
-        "    ",
-        "    Person person2(\"Alice\", 25);",
-        "    person2.setAge(26);",
-        "    person2.introduce();",
-        "    ",
-        "    return 0;",
-        "}",
-        "",
-        "// Function definitions",
-        "int add(int a, int b) {",
-        "    return a + b;",
-        "}",
-        "",
-        "float multiply(float a, float b) {",
-        "    return a * b;",
-        "}"
+        "    private:",
+        "        string name;",
+        "        int age;",
+        "    public:",
+        "        Person(string personName, int personAge) {",
+        "            name = personName;",
+        "            age = personAge;",
+        "        }",
+        "        void introduce() {",
+        "            cout << \"Hello, my name is \" << name << \" and I am \" << age << \" years old.\" << endl;",
+        "        }",
+        "};"
       ]
     },
     {
       "title": "Control Flow",
       "description": "Practice typing C++ control flow statements",
       "content": [
-        "#include <iostream>",
-        "using namespace std;",
-        "",
-        "int main() {",
-        "    // If-else statement",
-        "    int score = 85;",
-        "    ",
-        "    if (score >= 90) {",
-        "        cout << \"Grade: A\" << endl;",
-        "    } else if (score >= 80) {",
-        "        cout << \"Grade: B\" << endl;",
-        "    } else if (score >= 70) {",
-        "        cout << \"Grade: C\" << endl;",
-        "    } else if (score >= 60) {",
-        "        cout << \"Grade: D\" << endl;",
-        "    } else {",
-        "        cout << \"Grade: F\" << endl;",
-        "    }",
-        "    ",
-        "    // Switch statement",
-        "    int day = 3;",
-        "    string dayName;",
-        "    ",
-        "    switch (day) {",
-        "        case 1:",
-        "            dayName = \"Monday\";",
-        "            break;",
-        "        case 2:",
-        "            dayName = \"Tuesday\";",
-        "            break;",
-        "        case 3:",
-        "            dayName = \"Wednesday\";",
-        "            break;",
-        "        case 4:",
-        "            dayName = \"Thursday\";",
-        "            break;",
-        "        case 5:",
-        "            dayName = \"Friday\";",
-        "            break;",
-        "        case 6:",
-        "            dayName = \"Saturday\";",
-        "            break;",
-        "        case 7:",
-        "            dayName = \"Sunday\";",
-        "            break;",
-        "        default:",
-        "            dayName = \"Invalid day\";",
-        "            break;",
-        "    }",
-        "    ",
-        "    cout << \"Day: \" << dayName << endl;",
-        "    ",
-        "    // For loop",
-        "    cout << \"Counting from 1 to 5:\" << endl;",
-        "    for (int i = 1; i <= 5; i++) {",
-        "        cout << \"Count: \" << i << endl;",
-        "    }",
-        "    ",
-        "    // While loop",
-        "    cout << \"Countdown from 5 to 1:\" << endl;",
-        "    int countdown = 5;",
-        "    while (countdown > 0) {",
-        "        cout << \"Countdown: \" << countdown << endl;",
-        "        countdown--;",
-        "    }",
-        "    ",
-        "    // Do-while loop",
-        "    cout << \"Do-while example:\" << endl;",
-        "    int num = 1;",
-        "    do {",
-        "        cout << \"Number: \" << num << endl;",
-        "        num++;",
-        "    } while (num <= 3);",
-        "    ",
-        "    return 0;",
+        "if (true) {",
+        "    cout << \"It's true!\" << endl;",
         "}"
+      ]
+    },
+    {
+      "title": "Loops",
+      "description": "Practice typing C++ loops",
+      "content": [
+        "for (int i = 1; i <= 5; i++) {",
+        "    cout << \"Count: \" << i << endl;",
+        "}"
+      ]
+    },
+    {
+      "title": "Arrays",
+      "description": "Learn about C++ arrays",
+      "content": [
+        "int numbers[] = {1, 2, 3, 4, 5};"
+      ]
+    },
+    {
+      "title": "Pointers",
+      "description": "Learn about C++ pointers",
+      "content": [
+        "int* pNumber = &number;"
+      ]
+    },
+    {
+      "title": "Structures",
+      "description": "Learn about C++ structures",
+      "content": [
+        "struct Person {",
+        "    string name;",
+        "    int age;",
+        "};"
+      ]
+    },
+    {
+      "title": "Templates",
+      "description": "Learn about C++ templates",
+      "content": [
+        "template <typename T>",
+        "T max(T a, T b) {",
+        "    return (a > b) ? a : b;",
+        "}"
+      ]
+    },
+    {
+      "title": "Exception Handling",
+      "description": "Learn about C++ exception handling",
+      "content": [
+        "try {",
+        "    int x = 5 / 0;",
+        "} catch (const std::exception& e) {",
+        "    std::cout << \"Exception: \" << e.what() << std::endl;",
+        "}"
+      ]
+    },
+    {
+      "title": "File Input/Output",
+      "description": "Learn about C++ file input/output",
+      "content": [
+        "ifstream file(\"example.txt\");",
+        "string line;",
+        "while (getline(file, line)) {",
+        "    cout << line << endl;",
+        "}"
+      ]
+    },
+    {
+      "title": "Maps",
+      "description": "Learn about C++ maps",
+      "content": [
+        "map<string, int> ages;",
+        "ages[\"John\"] = 30;",
+        "ages[\"Jane\"] = 28;"
+      ]
+    },
+    {
+      "title": "Sets",
+      "description": "Learn about C++ sets",
+      "content": [
+        "set<string> names;",
+        "names.insert(\"John\");",
+        "names.insert(\"Jane\");"
+      ]
+    },
+    {
+      "title": "Lambda Expressions",
+      "description": "Learn about C++ lambda expressions",
+      "content": [
+        "auto add = [](int a, int b) { return a + b; };",
+        "int sum = add(5, 3);",
+        "cout << \"Sum: \" << sum << endl;"
+      ]
+    },
+    {
+      "title": "Smart Pointers",
+      "description": "Learn about C++ smart pointers",
+      "content": [
+        "unique_ptr<int> ptr(new int(5));",
+        "cout << \"Value: \" << *ptr << endl;"
+      ]
+    },
+    {
+      "title": "Move Semantics",
+      "description": "Learn about C++ move semantics",
+      "content": [
+        "string s1 = \"Hello\";",
+        "string s2 = std::move(s1);",
+        "cout << \"s2: \" << s2 << endl;"
+      ]
+    },
+    {
+      "title": "Rvalue References",
+      "description": "Learn about C++ rvalue references",
+      "content": [
+        "int foo(int&& x) { return x * 2; };",
+        "int result = foo(5);",
+        "cout << \"Result: \" << result << endl;"
+      ]
+    },
+    {
+      "title": "Variadic Templates",
+      "description": "Learn about C++ variadic templates",
+      "content": [
+        "template<typename... Ts>",
+        "void print(Ts... args) {",
+        "    (std::cout << ... << args) << std::endl;",
+        "}",
+        "print(1, 2, 3, 4, 5);"
+      ]
+    },
+    {
+      "title": "auto",
+      "description": "Learn about the auto keyword",
+      "content": [
+        "auto name = \"John\";",
+        "auto age = 30;",
+        "auto numbers = {1, 2, 3, 4, 5};"
       ]
     }
   ]

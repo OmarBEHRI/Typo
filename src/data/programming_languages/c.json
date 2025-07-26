@@ -7,159 +7,198 @@
       "description": "Learn about C basic syntax and structure",
       "content": [
         "#include <stdio.h>",
-        "",
         "int main() {",
-        "    // Output to console",
         "    printf(\"Hello, World!\\n\");",
-        "    ",
-        "    // Variables",
-        "    int number = 42;",
-        "    float pi = 3.14159f;",
-        "    char grade = 'A';",
-        "    ",
-        "    printf(\"The value of number is: %d\\n\", number);",
-        "    printf(\"The value of pi is: %f\\n\", pi);",
-        "    printf(\"The grade is: %c\\n\", grade);",
-        "    ",
-        "    // Input from console",
-        "    int userInput;",
-        "    printf(\"Please enter a number: \");",
-        "    scanf(\"%d\", &userInput);",
-        "    printf(\"You entered: %d\\n\", userInput);",
-        "    ",
-        "    // Constants",
-        "    const int MAX_VALUE = 1000;",
-        "    printf(\"The maximum value is: %d\\n\", MAX_VALUE);",
-        "    ",
         "    return 0;",
         "}"
       ]
     },
     {
-      "title": "Functions and Structures",
-      "description": "Practice typing C functions and structures",
+      "title": "Variables",
+      "description": "Learn about C variables",
+      "content": [
+        "int number = 42;",
+        "float pi = 3.14159f;",
+        "char grade = 'A';"
+      ]
+    },
+    {
+      "title": "Constants",
+      "description": "Learn about C constants",
+      "content": [
+        "const int MAX_VALUE = 1000;"
+      ]
+    },
+    {
+      "title": "Functions",
+      "description": "Learn about C functions",
+      "content": [
+        "int add(int a, int b);",
+        "float multiply(float a, float b);"
+      ]
+    },
+    {
+      "title": "Control Flow",
+      "description": "Learn about C control flow statements",
+      "content": [
+        "if (score >= 90) {",
+        "    printf(\"Grade: A\\n\");",
+        "} else {",
+        "    printf(\"Grade: F\\n\");",
+        "}"
+      ]
+    },
+    {
+      "title": "Loops",
+      "description": "Learn about C loops",
+      "content": [
+        "for (int i = 1; i <= 5; i++) {",
+        "    printf(\"Count: %d\\n\", i);",
+        "}"
+      ]
+    },
+    {
+      "title": "Arrays",
+      "description": "Learn about C arrays",
+      "content": [
+        "int numbers[5] = {1, 2, 3, 4, 5};"
+      ]
+    },
+    {
+      "title": "Structures",
+      "description": "Learn about C structures",
+      "content": [
+        "struct Person {",
+        "    char name[50];",
+        "    int age;",
+        "};"
+      ]
+    },
+    {
+      "title": "Pointers",
+      "description": "Learn about C pointers",
+      "content": [
+        "int* pNumber = &number;"
+      ]
+    },
+    {
+      "title": "Strings",
+      "description": "Learn about C strings",
+      "content": [
+        "char* message = \"Hello, World!\";"
+      ]
+    },
+    {
+      "title": "File Input/Output",
+      "description": "Learn about C file input/output",
       "content": [
         "#include <stdio.h>",
-        "#include <string.h>",
+        "FILE* file = fopen(\"example.txt\", \"w+\");",
+        "if (file == NULL) {",
+        "    printf(\"Error opening file\");",
+        "    return 1;",
+        "}",
+        "fprintf(file, \"Hello, World!\\n\");",
+        "fclose(file);"
+      ]
+    },
+    {
+      "title": "Dynamic Memory Allocation",
+      "description": "Learn about C dynamic memory allocation",
+      "content": [
+        "#include <stdlib.h>",
+        "int* pNumber = malloc(sizeof(int));",
+        "if (pNumber == NULL) {",
+        "    printf(\"Error allocating memory\");",
+        "    return 1;",
+        "}"
+      ]
+    },
+    {
+      "title": "Error Handling",
+      "description": "Learn about C error handling",
+      "content": [
+        "#include <stdio.h>",
+        "#include <stdlib.h>",
         "",
-        "// Function declaration",
-        "int add(int a, int b);",
-        "float multiply(float a, float b);",
-        "",
-        "// Structure definition",
+        "int main() {",
+        "    FILE* file = fopen(\"example.txt\", \"r\");",
+        "    if (file == NULL) {",
+        "        perror(\"Error opening file\");",
+        "        return 1;",
+        "    }",
+        "    fclose(file);",
+        "    return 0;",
+        "}"
+      ]
+    },
+    {
+      "title": "Structures",
+      "description": "Learn about C structures",
+      "content": [
         "struct Person {",
         "    char name[50];",
         "    int age;",
         "};",
         "",
-        "// Function to display person information",
-        "void introduce(struct Person p) {",
-        "    printf(\"Hello, my name is %s and I am %d years old.\\n\", p.name, p.age);",
-        "}",
+        "struct Person person;",
+        "strcpy(person.name, \"John\");",
+        "person.age = 25;"
+      ]
+    },
+    {
+      "title": "Unions",
+      "description": "Learn about C unions",
+      "content": [
+        "union Data {",
+        "    int number;",
+        "    float decimal;",
+        "    char character;",
+        "};"
+      ]
+    },
+    {
+      "title": "Enumerations",
+      "description": "Learn about C enumerations",
+      "content": [
+        "enum Color {",
+        "    RED,",
+        "    GREEN,",
+        "    BLUE",
+        "};"
+      ]
+    },
+    {
+      "title": "Preprocessor Directives",
+      "description": "Learn about C preprocessor directives",
+      "content": [
+        "#include <stdio.h>",
+        "#define PI 3.14",
         "",
         "int main() {",
-        "    // Function calls",
-        "    int sum = add(5, 3);",
-        "    printf(\"Sum: %d\\n\", sum);",
-        "    ",
-        "    float product = multiply(2.5f, 3.0f);",
-        "    printf(\"Product: %f\\n\", product);",
-        "    ",
-        "    // Creating and using structures",
-        "    struct Person person1;",
-        "    strcpy(person1.name, \"John\");",
-        "    person1.age = 30;",
-        "    introduce(person1);",
-        "    ",
-        "    struct Person person2;",
-        "    strcpy(person2.name, \"Alice\");",
-        "    person2.age = 25;",
-        "    person2.age++; // Increment age",
-        "    introduce(person2);",
-        "    ",
+        "    printf(\"%f\\n\", PI);",
         "    return 0;",
-        "}",
-        "",
-        "// Function definitions",
-        "int add(int a, int b) {",
-        "    return a + b;",
-        "}",
-        "",
-        "float multiply(float a, float b) {",
-        "    return a * b;",
         "}"
       ]
     },
     {
-      "title": "Control Flow",
-      "description": "Practice typing C control flow statements",
+      "title": "Bitwise Operations",
+      "description": "Learn about C bitwise operations",
       "content": [
-        "#include <stdio.h>",
-        "",
-        "int main() {",
-        "    // If-else statement",
-        "    int score = 85;",
-        "    ",
-        "    if (score >= 90) {",
-        "        printf(\"Grade: A\\n\");",
-        "    } else if (score >= 80) {",
-        "        printf(\"Grade: B\\n\");",
-        "    } else if (score >= 70) {",
-        "        printf(\"Grade: C\\n\");",
-        "    } else if (score >= 60) {",
-        "        printf(\"Grade: D\\n\");",
+        "int number = 5;",
+        "int result = number << 2;"
+      ]
+    },
+    {
+      "title": "Recursion",
+      "description": "Learn about C recursion",
+      "content": [
+        "int factorial(int n) {",
+        "    if (n == 0) {",
+        "        return 1;",
         "    } else {",
-        "        printf(\"Grade: F\\n\");",
+        "        return n * factorial(n - 1);",
         "    }",
-        "    ",
-        "    // Switch statement",
-        "    int day = 3;",
-        "    char dayName[20];",
-        "    ",
-        "    switch (day) {",
-        "        case 1:",
-        "            strcpy(dayName, \"Monday\");",
-        "            break;",
-        "        case 2:",
-        "            strcpy(dayName, \"Tuesday\");",
-        "            break;",
-        "        case 3:",
-        "            strcpy(dayName, \"Wednesday\");",
-        "            break;",
-        "        case 4:",
-        "            strcpy(dayName, \"Thursday\");",
-        "            break;",
-        "        case 5:",
-        "            strcpy(dayName, \"Friday\");",
-        "            break;",
-        "        case 6:",
-        "            strcpy(dayName, \"Saturday\");",
-        "            break;",
-        "        case 7:",
-        "            strcpy(dayName, \"Sunday\");",
-        "            break;",
-        "        default:",
-        "            strcpy(dayName, \"Invalid day\");",
-        "            break;",
-        "    }",
-        "    ",
-        "    printf(\"Day: %s\\n\", dayName);",
-        "    ",
-        "    // For loop",
-        "    printf(\"Counting from 1 to 5:\\n\");",
-        "    for (int i = 1; i <= 5; i++) {",
-        "        printf(\"Count: %d\\n\", i);",
-        "    }",
-        "    ",
-        "    // While loop",
-        "    printf(\"Countdown from 5 to 1:\\n\");",
-        "    int countdown = 5;",
-        "    while (countdown > 0) {",
-        "        printf(\"Countdown: %d\\n\", countdown);",
-        "        countdown--;",
-        "    }",
-        "    ",
-        "    return 0;",
         "}"
       ]
     }

@@ -5,12 +5,14 @@ function DailyGoalComponent({ dailyGoal }) {
   const progressPercentage = Math.min((dailyGoal.current / dailyGoal.total) * 100, 100);
   
   return (
-    <div className="mt-2 flex items-center bg-light-gray p-4 rounded-full">
-      <span className="text-sm">Daily goal:</span>
-      <span className="ml-2 text-text-highlight">{dailyGoal.current}/{dailyGoal.total} minutes</span>
-      <div className="ml-4 w-64 h-4 bg-light-gray rounded-full">
+    <div className="flex items-center gap-2 py-1">
+      <div className="flex items-center gap-1 text-sm text-text-normal">
+        <span className="font-medium">Daily Goal:</span>
+        <span className="text-text-highlight font-bold">{dailyGoal.current}/{dailyGoal.total}</span>
+      </div>
+      <div className="flex-1 h-2 bg-light-gray/30 rounded-full overflow-hidden">
         <div
-          className="h-full bg-text-success rounded-full"
+          className="h-full bg-text-success rounded-full transition-all duration-500 ease-in-out"
           style={{ width: `${progressPercentage}%` }}
         ></div>
       </div>

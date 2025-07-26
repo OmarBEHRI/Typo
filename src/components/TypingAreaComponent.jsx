@@ -304,12 +304,12 @@ const handleSessionFinish = useCallback(async () => {
       
       <div 
         ref={typingAreaRef}
-        className={`p-8 text-3xl leading-relaxed min-h-[400px] font-medium relative ${
+        className={`p-8 text-3xl leading-relaxed min-h-[400px] font-medium relative bg-black/10 rounded-xl shadow-lg border border-accent/10 ${
           isProgrammingMode ? 'w-full max-w-6xl overflow-x-auto' : ''
         }`}
       >  
         {/* Fade-out effect overlay */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-t from-dark-gray to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none bg-gradient-to-t from-dark-gray to-transparent rounded-b-xl"></div>
         
         {words.length > 0 && !isProgrammingMode && (
           <div className="flex flex-wrap">

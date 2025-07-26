@@ -76,13 +76,16 @@ const PracticePage = ({
   };
   
   return (
-    <div className="min-h-screen bg-dark-gray font-roboto flex flex-col">
-      <div className="w-full max-w-4xl mx-auto flex flex-col items-center pt-16" id="typing-area">
-        <div className="mb-6 w-full flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-text-highlight">
-            {selectedLesson ? `Practicing: ${selectedLanguage.name} - ${selectedLesson.title}` : 'Typing Practice'}
-          </h2>
-          <div className="flex space-x-2">
+    <div className="h-screen bg-dark-gray font-roboto flex flex-col overflow-hidden">
+      <div className="w-full max-w-6xl mx-auto flex flex-col items-center h-full py-8 pt-12" id="typing-area">
+        <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-8 mt-2">
+          <div>
+            <h1 className="text-4xl font-bold text-text-highlight mb-3">
+              {selectedLesson ? `Practicing: ${selectedLanguage.name} - ${selectedLesson.title}` : 'Typing Practice'}
+            </h1>
+            <DailyGoalComponent dailyGoal={dailyGoal} />
+          </div>
+          <div className="flex space-x-3 mt-2 md:mt-0">
             {selectedLesson && (
               <button 
                 onClick={() => {
@@ -109,14 +112,14 @@ const PracticePage = ({
                   setAccuracy(0);
                   setScore(0);
                 }}
-                className="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors duration-200"
+                className="bg-green-600 hover:bg-green-700 text-white py-2 px-5 rounded-lg transition-colors duration-200"
               >
                 Back to English Practice
               </button>
             )}
             <button 
               onClick={() => setShowLanguageSelection(!showLanguageSelection)}
-              className="bg-accent hover:bg-accent-dark text-white py-2 px-4 rounded-lg transition-colors duration-200"
+              className="bg-accent hover:bg-accent-dark text-white py-2 px-5 rounded-lg transition-colors duration-200"
             >
               {showLanguageSelection ? 'Back to Practice' : 'Programming Languages'}
             </button>
@@ -130,54 +133,67 @@ const PracticePage = ({
           />
         ) : (
           <>
-            <div className="mb-12">
-              <HiddenInputComponent inputRef={inputRef} handleKeyDown={handleKeyDown} />
-              <MetricsComponent
-                speed={speed}
-                accuracy={accuracy}
-                score={score}
-                learningRate={learningRate}
-                lastSpeed={lastSpeed}
-                topSpeed={topSpeed}
-                lessonAccuracy={lessonAccuracy}
-              />
+            {/* Hidden input for capturing keystrokes */}
+            <HiddenInputComponent inputRef={inputRef} handleKeyDown={handleKeyDown} />
+            
+            {/* Stats section with subtle styling */}
+             <div className="w-full mb-3 bg-light-gray/5 p-2 rounded-lg">
+               <MetricsComponent
+                 speed={speed}
+                 accuracy={accuracy}
+                 score={score}
+                 learningRate={learningRate}
+                 lastSpeed={lastSpeed}
+                 topSpeed={topSpeed}
+                 lessonAccuracy={lessonAccuracy}
+               />
+             </div>
+            
+            {/* Main content area with flex to ensure vertical centering */}
+            <div className="flex-1 w-full flex flex-col justify-center overflow-hidden">
               {!selectedLesson && (
-                <KeyboardComponent
-                  selectedKeys={selectedKeys}
-                  toggleKey={toggleKey}
-                  currentKey={currentKey}
-                  selectCurrentKey={selectCurrentKey}
-                  toggleAllKeys={toggleAllKeys}
-                />
+                <div className="w-full mb-4">
+                  <KeyboardComponent
+                    selectedKeys={selectedKeys}
+                    toggleKey={toggleKey}
+                    currentKey={currentKey}
+                    selectCurrentKey={selectCurrentKey}
+                    toggleAllKeys={toggleAllKeys}
+                  />
+                </div>
               )}
-            </div>
-            <div className="flex-grow flex items-center">
+              
+              {/* Typing area with better vertical centering */}
+              <div className="w-full flex-1 flex items-center justify-center">
               <TypingAreaComponent
-                words={words}
-                currentWordIndex={currentWordIndex}
-                currentLetterIndex={currentLetterIndex}
-                typedLetters={typedLetters}
-                startTime={startTime}
-                setDailyGoal={setDailyGoal}
-                selectedKeys={selectedKeys}
-                wordsData={wordsData}
-                setWords={setWords}
-                setCurrentWordIndex={setCurrentWordIndex}
-                setCurrentLetterIndex={setCurrentLetterIndex}
-                setTypedLetters={setTypedLetters}
-                setStartTime={setStartTime}
-                setEndTime={setEndTime}
-                setKeystrokes={setKeystrokes}
-                setErrors={setErrors}
-                setSpeed={setSpeed}
-                setAccuracy={setAccuracy}
-                setScore={setScore}
-                inputRef={inputRef}
-                isProgrammingMode={!!selectedLesson}
-                programmingContent={selectedLesson?.content}
-              />
+                  words={words}
+                  currentWordIndex={currentWordIndex}
+                  currentLetterIndex={currentLetterIndex}
+                  typedLetters={typedLetters}
+                  startTime={startTime}
+                  setDailyGoal={setDailyGoal}
+                  selectedKeys={selectedKeys}
+                  wordsData={wordsData}
+                  setWords={setWords}
+                  setCurrentWordIndex={setCurrentWordIndex}
+                  setCurrentLetterIndex={setCurrentLetterIndex}
+                  setTypedLetters={setTypedLetters}
+                  setStartTime={setStartTime}
+                  setEndTime={setEndTime}
+                  setKeystrokes={setKeystrokes}
+                  setErrors={setErrors}
+                  setSpeed={setSpeed}
+                  setAccuracy={setAccuracy}
+                  setScore={setScore}
+                  inputRef={inputRef}
+                  isProgrammingMode={!!selectedLesson}
+                  programmingContent={selectedLesson?.content}
+                />
+              </div>
+              
+              {/* Add some bottom spacing */}
+              <div className="h-6"></div>
             </div>
-            <DailyGoalComponent dailyGoal={dailyGoal} />
           </>
         )}
       </div>
